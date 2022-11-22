@@ -15,6 +15,25 @@ yarn dev
 
 3. Open [http://localhost:4200](http://localhost:4200) with your browser to see the result.
 
+## Docker Image
+
+A Docker image is provided with the project to facilitate its deployment.
+
+#### Build the Image
+
+To build the image, run the following:
+
+```
+# Build the image
+docker build --tag kelvin-nextjs-sample .
+```
+
+#### Run the Image as a Container
+
+```
+docker run -p 4200:4200  kelvin-nextjs-sample
+```
+
 ## Learn More
 
 To learn more about Kelvin, see the following resources:
