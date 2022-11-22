@@ -4,12 +4,9 @@ import Link from 'next/link';
 
 import styles from './Home.module.scss';
 
-import { Header } from '@/components/Header';
-
 export default function HomePage() {
 	return (
 		<div>
-			<Header />
 			<main className={styles.main}>
 				<h1 className={styles.title}>
 					Welcome to <a href="https://docs.kelvininc.com/">Kelvin</a> +{' '}

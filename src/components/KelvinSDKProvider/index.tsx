@@ -3,41 +3,36 @@
 import 'client-only';
 import KelvinSDK from '@kelvininc/web-client-sdk';
 
-import { ReactKeycloakProvider } from '@react-keycloak/web';
-
 import axios from 'axios';
-import { useState } from 'react';
 
-import { keycloak } from '@/components/KelvinSDKProvider/keycloak';
+import { Session } from 'next-auth';
+import { SessionProvider } from 'next-auth/react';
 
-import { Env } from '@/utils/env';
+import { FC } from 'react';
 
-KelvinSDK.initialize(
-	{
-		baseUrl: Env.getString('NEXT_API_URL') || `https://alpha.kelvininc.com/api/v4`
-	},
-	axios
-);
+import { Env, inBrowser } from '@/utils/env';
 
-export const KelvinSDKProvider = ({ children }: { children: React.ReactNode }) => {
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
-	return (
-		<ReactKeycloakProvider
-			authClient={keycloak}
-			initOptions={{
-				onLoad: 'login-required',
-				checkLoginIframe: false,
-				loadUserProfileAtStartUp: false,
-				bearerExcludedUrls: []
-			}}
-			onTokens={(tokens) => {
-				KelvinSDK.setSessionConfiguration({
-					accessToken: tokens.token as string,
-					refreshToken: tokens.refreshToken
-				});
-				setIsAuthenticated(true);
-			}}>
-			{isAuthenticated && children}
-		</ReactKeycloakProvider>
+if (inBrowser()) {
+	console.log('NEXT_PUBLIC_API_URL', Env.getString('NEXT_PUBLIC_API_URL'));
+	KelvinSDK.initialize(
+		{
+			baseUrl: Env.getString('NEXT_PUBLIC_API_URL')
+		},
+		axios
 	);
+}
+
+interface KelvinSDKProviderProps {
+	session: Session | null;
+	children: React.ReactNode;
+}
+
+export const KelvinSDKProvider: FC<KelvinSDKProviderProps> = ({ children, session }) => {
+	if (session) {
+		KelvinSDK.setSessionConfiguration({
+			accessToken: session.token.accessToken as string,
+			refreshToken: session.token.refreshToken
+		});
+	}
+	return <SessionProvider session={session}>{children}</SessionProvider>;
 };

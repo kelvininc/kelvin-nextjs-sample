@@ -1,1 +1,1 @@
-export const NUMBER_OF_ASSETS = 100;
+export const NUMBER_OF_ASSETS = 10;
