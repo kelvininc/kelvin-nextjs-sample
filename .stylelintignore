@@ -1,0 +1,11 @@
+build/*
+config/*
+public/*
+coverage/*
+node_modules/*
+public/*
+scripts/*
+unit-coverage/*
+
+src/assets/styles/normalize.css
+src/assets/styles/reset.css

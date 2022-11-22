@@ -1,0 +1,54 @@
+{
+	"extends": [
+		"stylelint-config-standard",
+		"stylelint-config-recommended",
+		"stylelint-config-standard-scss",
+		"stylelint-config-prettier"
+	],
+	"rules": {
+		"indentation": "tab",
+		"value-keyword-case": "lower",
+		"selector-class-pattern": "[a-z]+(--[a-z]+)?(__[a-z]+)?",
+		"selector-max-class": 5,
+		"selector-max-id": 2,
+		"selector-max-pseudo-class": 3,
+		"function-url-no-scheme-relative": true,
+		"selector-type-no-unknown": null,
+		"declaration-block-no-shorthand-property-overrides": true,
+		"declaration-block-semicolon-newline-after": "always-multi-line",
+		"declaration-bang-space-after": "always",
+		"declaration-no-important": true,
+		"declaration-block-no-duplicate-properties": [
+			true,
+			{
+				"ignore": [
+					"consecutive-duplicates"
+				]
+			}
+		],
+		"scss/at-import-partial-extension": "always",
+		"property-disallowed-list": [
+			"float"
+		],
+		"declaration-property-unit-allowed-list": {
+			"height": [
+				"vh",
+				"%",
+				"px"
+			],
+			"font-size": [
+				"rem",
+				"px"
+			]
+		},
+		"function-no-unknown": [
+			true,
+			{
+				"ignoreFunctions": [
+					"/^(#{)?kv-/",
+					"map.get"
+				]
+			}
+		]
+	}
+}

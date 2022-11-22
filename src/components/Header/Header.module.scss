@@ -1,0 +1,13 @@
+@import "@kelvininc/react-ui-components/assets/styles/globals.scss";
+
+.Header {
+  background-color: kv-color('neutral-7');
+  padding: $spacing-2x $spacing-6x;
+  display: flex;
+  align-items: center;
+}
+
+.HeaderLogo {
+  width: 48px;
+  height: 48px;
+}
