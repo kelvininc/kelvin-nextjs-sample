@@ -10,14 +10,16 @@ interface AssetListPageProps {
 	assets: AssetItem[];
 }
 
-export const AssetsListPage: FC<AssetListPageProps> = () => {
-	const paginator = usePaginator(() =>
-		AssetService.getPaginator(
-			AssetService.listAsset({
-				pageSize: NUMBER_OF_ASSETS
-			})
-		)
-	);
+export const AssetsListPage: FC<AssetListPageProps> = ({ assets }) => {
+	const paginator = usePaginator({
+		initialItems: assets,
+		getPaginator: () =>
+			AssetService.getPaginator(
+				AssetService.listAsset({
+					pageSize: NUMBER_OF_ASSETS
+				})
+			)
+	});
 
 	return (
 		<>

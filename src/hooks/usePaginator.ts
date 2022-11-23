@@ -1,9 +1,17 @@
 import { KvPaginator, Model } from '@kelvininc/web-client-sdk';
 import { useEffect, useState } from 'react';
 
-export const usePaginator = <T extends Model>(getPaginator: () => KvPaginator<T>) => {
+interface UsePaginatorOptions<T extends Model> {
+	getPaginator: () => KvPaginator<T>;
+	initialItems?: T[];
+}
+
+export const usePaginator = <T extends Model>({
+	getPaginator,
+	initialItems = []
+}: UsePaginatorOptions<T>) => {
 	const [paginator, setPaginator] = useState<KvPaginator<T> | undefined>(undefined);
-	const [items, setItems] = useState<T[]>([]);
+	const [items, setItems] = useState<T[]>(initialItems);
 	const [hasNext, setHasNext] = useState(false);
 	const [hasPrevious, setHasPrevious] = useState(false);
 

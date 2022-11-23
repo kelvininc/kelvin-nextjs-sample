@@ -6,16 +6,10 @@ import ms from 'ms';
 
 dayjs.extend(duration);
 
-import { unstable__getPublicVariables } from '@/utils/env/unstable__getPublicVariables';
-
 const booleanFalseValues = ['false', '0', 'no', 'off'];
 
 export class Env {
 	static getString(key: string): string {
-		if (inBrowser()) {
-			const publicEnv = unstable__getPublicVariables();
-			return publicEnv[key] || '';
-		}
 		return process.env[key] || '';
 	}
 	static getNumber(key: string): number {

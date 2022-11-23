@@ -1,7 +1,8 @@
 'use client';
 
 import 'client-only';
-import KelvinSDK from '@kelvininc/web-client-sdk';
+
+import KelvinWebSDK from '@kelvininc/web-client-sdk';
 
 import axios from 'axios';
 
@@ -10,26 +11,18 @@ import { SessionProvider } from 'next-auth/react';
 
 import { FC } from 'react';
 
-import { Env, inBrowser } from '@/utils/env';
-
-if (inBrowser()) {
-	console.log('NEXT_PUBLIC_API_URL', Env.getString('NEXT_PUBLIC_API_URL'));
-	KelvinSDK.initialize(
-		{
-			baseUrl: Env.getString('NEXT_PUBLIC_API_URL')
-		},
-		axios
-	);
-}
+import { inBrowser } from '@/utils/env';
 
 interface KelvinSDKProviderProps {
+	baseUrl: string;
 	session: Session | null;
 	children: React.ReactNode;
 }
 
-export const KelvinSDKProvider: FC<KelvinSDKProviderProps> = ({ children, session }) => {
-	if (session) {
-		KelvinSDK.setSessionConfiguration({
+export const KelvinSDKProvider: FC<KelvinSDKProviderProps> = ({ children, baseUrl, session }) => {
+	if (session && inBrowser()) {
+		KelvinWebSDK.initialize({ baseUrl: baseUrl }, axios);
+		KelvinWebSDK.setSessionConfiguration({
 			accessToken: session.token.accessToken as string,
 			refreshToken: session.token.refreshToken
 		});
