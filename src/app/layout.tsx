@@ -9,7 +9,7 @@ import { KelvinSDKProvider } from '@/components/KelvinSDKProvider';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { Env } from '@/utils/env';
 
-const API_URL = Env.getString('NEXT_PUBLIC_API_URL');
+const API_URL = Env.getString('API_URL');
 
 KelvinNodeSDK.KelvinSDK.initialize({
 	baseUrl: API_URL
