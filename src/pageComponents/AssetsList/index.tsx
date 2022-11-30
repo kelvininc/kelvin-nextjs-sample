@@ -1,23 +1,21 @@
 'use client';
 
-import { AssetItem, AssetService } from '@kelvininc/web-client-sdk';
+import { AssetItem, AssetService, IPaginationParams } from '@kelvininc/web-client-sdk';
 import { FC } from 'react';
 
 import { usePaginator } from '@/hooks/usePaginator';
-import { NUMBER_OF_ASSETS } from '@/pageComponents/AssetsList/config';
+import { SerializedPaginator } from '@/utils/pagination/serializePaginator';
 
 interface AssetListPageProps {
-	assets: AssetItem[];
+	ssrPaginator: SerializedPaginator<AssetItem, IPaginationParams>;
 }
 
-export const AssetsListPage: FC<AssetListPageProps> = () => {
-	const paginator = usePaginator(() =>
-		AssetService.getPaginator(
-			AssetService.listAsset({
-				pageSize: NUMBER_OF_ASSETS
-			})
-		)
-	);
+export const AssetsListPage: FC<AssetListPageProps> = ({ ssrPaginator }) => {
+	const paginator = usePaginator({
+		request: AssetService.listAsset,
+		requestOptions: ssrPaginator.requestParams,
+		ssrPaginator
+	});
 
 	return (
 		<>

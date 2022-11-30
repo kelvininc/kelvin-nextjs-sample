@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import bytes from 'bytes';
-import { Duration } from 'luxon';
+import dayjs from 'dayjs';
+import duration, { Duration } from 'dayjs/plugin/duration';
 import ms from 'ms';
+
+dayjs.extend(duration);
 
 const booleanFalseValues = ['false', '0', 'no', 'off'];
 
@@ -29,10 +32,10 @@ export class Env {
 	static getDuration(key: string): Duration {
 		const value = Env.getString(key);
 		if (!value) {
-			return Duration.fromMillis(0);
+			return dayjs.duration(0);
 		}
 		const millis = ms(value);
-		return Duration.fromMillis(millis);
+		return dayjs.duration(millis);
 	}
 	static getBytes(key: string): number {
 		const value = Env.getString(key);
