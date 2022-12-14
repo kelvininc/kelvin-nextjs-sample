@@ -5,15 +5,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 1. Create your `.env` file from the `.env.example` file provided
-2. Run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-3. Open [http://localhost:4200](http://localhost:4200) with your browser to see the result.
+2. Run `nvm use` to ensure you are using the correct Node.js version
+3. Run `npm install`
+4. Run `npm run dev` to start the development server:
+5. Open [http://localhost:4200](http://localhost:4200) with your browser to see the result.
 
 ## Docker Image
 

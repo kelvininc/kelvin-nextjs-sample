@@ -9,38 +9,38 @@ dayjs.extend(duration);
 const booleanFalseValues = ['false', '0', 'no', 'off'];
 
 export class Env {
-	static getString(key: string): string {
-		return process.env[key] || '';
+	static getString(key: string, defaultValue = ''): string {
+		return process.env[key] || defaultValue;
 	}
-	static getNumber(key: string): number {
+	static getNumber(key: string, defaultValue = 0): number {
 		const value = Env.getString(key);
 		if (value) {
 			return +value;
 		}
-		return 0;
+		return defaultValue;
 	}
-	static getBoolean(key: string): boolean {
+	static getBoolean(key: string, defaultValue = false): boolean {
 		const value = Env.getString(key);
 		if (!value) {
-			return false;
+			return defaultValue;
 		}
 		if (booleanFalseValues.includes(value)) {
 			return false;
 		}
 		return true;
 	}
-	static getDuration(key: string): Duration {
+	static getDuration(key: string, defaultValue = dayjs.duration(0)): Duration {
 		const value = Env.getString(key);
 		if (!value) {
-			return dayjs.duration(0);
+			return defaultValue;
 		}
 		const millis = ms(value);
 		return dayjs.duration(millis);
 	}
-	static getBytes(key: string): number {
+	static getBytes(key: string, defaultValue = 0): number {
 		const value = Env.getString(key);
 		if (!value) {
-			return 0;
+			return defaultValue;
 		}
 		return bytes(value);
 	}
