@@ -13,11 +13,11 @@ import { FC } from 'react';
 
 import { inBrowser } from '@/utils/env';
 
-interface KelvinSDKProviderProps {
+type KelvinSDKProviderProps = {
 	baseUrl: string;
 	session: Session | null;
 	children: React.ReactNode;
-}
+};
 
 export const KelvinSDKProvider: FC<KelvinSDKProviderProps> = ({ children, baseUrl, session }) => {
 	if (session && inBrowser()) {

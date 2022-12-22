@@ -6,9 +6,9 @@ import { FC } from 'react';
 import { usePaginator } from '@/hooks/usePaginator';
 import { SerializedPaginator } from '@/utils/pagination/serializePaginator';
 
-interface AssetListPageProps {
+type AssetListPageProps = {
 	ssrPaginator: SerializedPaginator<AssetItem, IPaginationParams>;
-}
+};
 
 export const AssetsListPage: FC<AssetListPageProps> = ({ ssrPaginator }) => {
 	const paginator = usePaginator({

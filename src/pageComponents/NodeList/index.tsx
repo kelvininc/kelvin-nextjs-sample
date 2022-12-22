@@ -6,9 +6,9 @@ import { FC } from 'react';
 import { usePaginator } from '@/hooks/usePaginator';
 import { SerializedPaginator } from '@/utils/pagination/serializePaginator';
 
-interface NodeListPageProps {
+type NodeListPageProps = {
 	ssrPaginator: SerializedPaginator<ACPItem, IPaginationParams>;
-}
+};
 
 export const NodesListPage: FC<NodeListPageProps> = ({ ssrPaginator }) => {
 	const paginator = usePaginator({

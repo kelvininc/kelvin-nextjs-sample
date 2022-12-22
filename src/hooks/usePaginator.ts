@@ -8,11 +8,11 @@ import { useEffect, useState } from 'react';
 
 import { SerializedPaginator } from '@/utils/pagination/serializePaginator';
 
-interface UsePaginatorOptions<T extends Model, K extends IPaginationParams> {
+type UsePaginatorOptions<T extends Model, K extends IPaginationParams> = {
 	request: PaginatorRequest<T, K>;
 	requestOptions: K;
 	ssrPaginator?: SerializedPaginator<T, K>;
-}
+};
 
 export const usePaginator = <T extends Model, K extends IPaginationParams>({
 	request,

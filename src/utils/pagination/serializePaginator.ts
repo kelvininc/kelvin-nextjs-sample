@@ -2,14 +2,14 @@ import { IPaginationParams, KvPaginationHandler, Model } from '@kelvininc/node-c
 
 import { toPlainObject } from '@/utils/object/toPlainObject';
 
-export interface SerializedPaginator<T extends Model, K extends IPaginationParams> {
+export type SerializedPaginator<T extends Model, K extends IPaginationParams> = {
 	items: T[];
 	requestParams: K;
 	previousPageParams: IPaginationParams;
 	nextPageParams: IPaginationParams;
 	hasPrevious: boolean;
 	hasNext: boolean;
-}
+};
 
 export const serializePaginator = <T extends Model, K extends IPaginationParams>(
 	paginator: KvPaginationHandler<T, K>,
