@@ -1,39 +1,49 @@
 import 'server-only';
 
-import { ACPService } from '@kelvininc/node-client-sdk';
+import {
+	ACPItem,
+	ACPService,
+	IPaginationDataStream,
+	KvPaginationHandler,
+	setSession as setKelvinApiSession
+} from '@kelvininc/node-client-sdk';
 
-import * as KelvinNodeSDK from '@kelvininc/node-client-sdk';
 import { unstable_getServerSession } from 'next-auth';
 
 import { NodesListPage } from '@/pageComponents/NodeList';
 import { NUMBER_OF_NODES } from '@/pageComponents/NodeList/config';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { redirectToSignInPage } from '@/utils/navigation/redirectToSignInPage';
+import { logout } from '@/utils/auth/logout';
+import { handleServerError } from '@/utils/error/handleServerError';
 import { serializePaginator } from '@/utils/pagination/serializePaginator';
 
 export default async function Assets() {
-	const session = await unstable_getServerSession(authOptions);
-	if (!session) {
-		redirectToSignInPage();
-		return;
-	}
+	try {
+		const session = await unstable_getServerSession(authOptions);
+		if (!session) {
+			logout({ callbackUrl: '/nodes' });
+		}
 
-	KelvinNodeSDK.setSession({
-		accessToken: session.token.accessToken as string,
-		refreshToken: session.token.refreshToken
-	});
+		setKelvinApiSession({
+			accessToken: session.token.accessToken as string,
+			refreshToken: session.token.refreshToken
+		});
 
-	const paginator = new KelvinNodeSDK.KvPaginationHandler(ACPService.listACP, {
-		pageSize: NUMBER_OF_NODES
-	});
+		const paginator = new KvPaginationHandler(ACPService.listACP, {
+			pageSize: NUMBER_OF_NODES
+		});
 
-	paginator.fetch();
-	const response: KelvinNodeSDK.IPaginationDataStream<KelvinNodeSDK.ACPItem> = await new Promise(
-		(resolve) => {
+		paginator.fetch();
+		const response: IPaginationDataStream<ACPItem> = await new Promise((resolve, reject) => {
 			paginator.getDataStream().subscribe((data) => {
 				resolve(data);
 			});
-		}
-	);
-	return <NodesListPage ssrPaginator={serializePaginator(paginator, response.data)} />;
+			paginator.getErrorStream().subscribe((error) => {
+				reject(error);
+			});
+		});
+		return <NodesListPage ssrPaginator={serializePaginator(paginator, response.data)} />;
+	} catch (e) {
+		handleServerError(e, { callbackUrl: '/nodes' });
+	}
 }
