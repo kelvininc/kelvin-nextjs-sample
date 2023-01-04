@@ -76,6 +76,8 @@ export const AssetsCachePage: FC<AssetCachePageProps> = ({ paginatedAssets, allM
 		return [...staticColumns, ...metricColumns];
 	}, [allMetrics]);
 
+	console.log(paginator.value);
+
 	return (
 		<div className={styles.AssetCachePage}>
 			<DataGrid
@@ -87,10 +89,11 @@ export const AssetsCachePage: FC<AssetCachePageProps> = ({ paginatedAssets, allM
 				rowCount={paginator.value?.total || 0}
 				columns={columns}
 				rowsPerPageOptions={[5, 10, 25, 50]}
+				page={paginator.value?.page ? paginator.value.page - 1 : 0}
 				pageSize={paginator.value?.limit}
 				getRowId={(asset: CachedAssetItem) => asset.name}
 				disableSelectionOnClick
-				onPageChange={paginator.onPageChange}
+				onPageChange={(newPage) => paginator.onPageChange(newPage + 1)}
 				onPageSizeChange={paginator.onPageSizeChange}
 				sortModel={
 					paginator.value?.sort
