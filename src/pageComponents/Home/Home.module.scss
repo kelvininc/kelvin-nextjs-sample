@@ -3,7 +3,7 @@
   }
 
   .main {
-	min-height: calc(100vh - 64px);
+	margin-top: 24px;
 	padding: 0;
 	flex: 1;
 	display: flex;
@@ -51,7 +51,7 @@
   }
 
   .description {
-	margin: 4rem 0;
+	margin: 12px 0;
 	line-height: 1.5;
 	font-size: 1.5rem;
   }
@@ -82,8 +82,8 @@
 	border: 1px solid #eaeaea;
 	border-radius: 10px;
 	transition: color 0.15s ease, border-color 0.15s ease;
-	max-width: 300px;
 	height: 100%;
+	width: 100%;
   }
 
   .card:hover,
@@ -95,12 +95,12 @@
 
   .card h2 {
 	margin: 0 0 1rem 0;
-	font-size: 1.5rem;
+	font-size: 18px;
   }
 
   .card p {
 	margin: 0;
-	font-size: 1.25rem;
+	font-size: 16px;
 	line-height: 1.5;
   }
 

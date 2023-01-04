@@ -1,0 +1,33 @@
+@import '@kelvininc/ui-components/dist/assets/styles/kv-typography.scss';
+@import 'variables.scss';
+
+@mixin kv-font-label-14px-uppercase-semibold() {
+	font-family: $primary-font;
+	font-size: 14px;
+	font-weight: 600;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 1.125rem;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+}
+
+@mixin kv-font-span-64px-semibold() {
+	font-family: $primary-font;
+	font-size: 64px;
+	font-weight: 600;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: normal;
+}
+
+@mixin kv-font-h1-40px-semibold() {
+	font-family: $primary-font;
+	font-size: 40px;
+	font-weight: 600;
+	font-stretch: normal;
+	font-style: normal;
+	line-height: 2.875rem;
+	letter-spacing: normal;
+}

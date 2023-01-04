@@ -7,5 +7,5 @@ public/*
 scripts/*
 unit-coverage/*
 
-src/assets/styles/normalize.css
-src/assets/styles/reset.css
+src/styles/normalize.css
+src/styles/reset.css

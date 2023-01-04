@@ -33,6 +33,14 @@ export default function HomePage() {
 							historian or any type of group of data that generates data.
 						</p>
 					</Link>
+					<Link href="/asset-cache" className={styles.card}>
+						<h2>Asset Cache &rarr;</h2>
+						<p>
+							The asset cache is a high-speed intermediary API that allows for quick
+							retrieval of associated metric values, alarms, and data labels with a
+							single query.
+						</p>
+					</Link>
 				</div>
 			</main>
 		</div>

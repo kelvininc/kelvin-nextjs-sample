@@ -1,0 +1,53 @@
+@import '@kelvininc/ui-components/dist/assets/styles/kv-theme.default.scss';
+@import '@/styles/spacing.scss';
+
+// Shared sizes
+$breadcrumb-height: 52px;
+$header-height: 54px;
+$sidebar-width: 345px;
+$navigation-sidebar-expanded-width: 257px;
+$navigation-sidebar-collapsed-width: 56px;
+$sidepanel-width: 510px;
+$page-min-height: 800px;
+$page-min-width: 1280px;
+$page-header-height: 130px;
+
+// Table sizes
+$table-row-height: 60px;
+$table-headers-height: 38px;
+$alarms-headers-height: 38px;
+$alarms-table-body-height: calc(
+	100vh - $breadcrumb-height - 4 * $spacing-6x - $table-headers-height - $alarms-headers-height
+);
+$alarms-table-expanded-width: calc(100vw - $navigation-sidebar-collapsed-width - $spacing-6x * 2);
+$alarms-table-collapsed-width: calc(100vw - $navigation-sidebar-expanded-width - $spacing-6x * 2);
+$overview-process-card-height: 300px;
+$overview-process-list-title-height: calc(30px + $spacing-6x);
+$overview-processes-list-height: calc(
+	$overview-process-list-title-height + $overview-process-card-height + 2 * $spacing-4x
+);
+$overview-asset-list-title-height: calc(38px + $spacing-6x * 2);
+$assets-header-height: calc(
+	$overview-asset-list-title-height + $table-headers-height + $spacing-6x
+);
+$asset-list-table-body-height: calc(
+	100vh - $header-height - $overview-processes-list-height - $assets-header-height
+);
+$asset-list-table-expanded-width: calc(
+	100vw - $navigation-sidebar-collapsed-width - $spacing-6x * 2
+);
+$asset-list-table-collapsed-width: calc(
+	100vw - $navigation-sidebar-expanded-width - $spacing-6x * 2
+);
+$toolbar-height: 44px;
+$tab-navigation-height: 55px;
+
+// Colors
+$background-color: kv-color('neutral-9');
+$alarms-severity-colors: (
+	'1': #a71300,
+	'2': #e0a93b,
+	'3': #9e0c96,
+	'4': #305960,
+	'5': #2261d4
+);

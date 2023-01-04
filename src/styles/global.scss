@@ -1,0 +1,31 @@
+@import '@kelvininc/react-ui-components/assets/fonts/font-proxima-nova.css';
+@import '@kelvininc/react-ui-components/assets/styles/globals.scss';
+
+
+@import 'typography.scss';
+@import 'theme.scss';
+
+body {
+	background-color: $background-color;
+	color: $text-color;
+	@include kv-font-span-regular;
+
+	* {
+		box-sizing: border-box;
+	}
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+	text-decoration: inherit;
+	color: inherit;
+}
+
