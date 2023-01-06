@@ -76,8 +76,6 @@ export const AssetsCachePage: FC<AssetCachePageProps> = ({ paginatedAssets, allM
 		return [...staticColumns, ...metricColumns];
 	}, [allMetrics]);
 
-	console.log(paginator.value);
-
 	return (
 		<div className={styles.AssetCachePage}>
 			<DataGrid
