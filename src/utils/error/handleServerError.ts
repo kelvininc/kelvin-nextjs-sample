@@ -8,9 +8,7 @@ type HandleServerErrorOptions = {
 	callbackUrl?: string;
 };
 
-type KelvinApiError = {
-	status: number;
-} & Error;
+type KelvinApiError = Pick<Response, 'statusText' | 'status' | 'headers' | 'body'>;
 
 export function handleServerError(
 	error: Error | KelvinApiError | AxiosError,
